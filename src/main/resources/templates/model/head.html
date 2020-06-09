@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head th:fragment="header">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:text="${title}?${title}:'My site'"></title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.min.css}" >
+    <script th:src="@{/vue-2.6.11/dist/vue.js}"></script>	   
+	<script src="https://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+     
+     <style>
+		     body
+		     {
+		     background-image:url("/image/bg1.jpg");     
+		     backgtound-repeat:repeat-y;
+		     background-size:cover;
+		     background-position:0% -18%;
+		     }
+		     .banner{
+		     opacity:0.6;
+			 filter:alpha(opacity=40);
+			 }
+     </style>
+	</head>
+	<body>
+		<div th:fragment="banner" class="layui-container banner" width="100%" height="400px">
+			<image th:src="@{/image/banner.jpg}" width="100%">
+		</div>
+		
+		<div th:fragment="nav">
+			<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #33a3dc;">
+			
+			  <a class="navbar-brand" href="/"><image th:src="@{/image/logo.png}" width="50" height="50" th:alt="#{site.name}" >[[#{site.name}]]</a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+			
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			    <ul class="navbar-nav mr-auto">
+			      <li class="nav-item active">
+			        <a class="nav-link" href="/">[[#{nav.home}]] <span class="sr-only">(current)</span></a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="/event">[[#{nav.event}]]</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="/news">[[#{nav.news}]]</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="/recommend">[[#{nav.recommend}]]</a>
+			      </li>
+			      <li class="nav-item dropdown">
+			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			          [[#{nav.acg}]]
+			        </a>
+			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+			          <a class="dropdown-item" href="/music">[[#{nav.acg.music}]]</a>
+			          <a class="dropdown-item" href="/cg">[[#{nav.acg.cg}]]</a>
+			          <div class="dropdown-divider"></div>
+			          <a class="dropdown-item" href="/game">[[#{nav.acg.game}]]</a>
+			          <a class="dropdown-item" href="/anime">[[#{nav.acg.anime}]]</a>
+			        </div>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+			      </li>
+			    </ul>
+			    <form class="form-inline my-2 my-lg-0">
+			      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			    </form>
+			  </div>
+			</nav>		
+		
+		</div>
+		
+
+		<div th:fragment="script">
+		
+			<script th:src="@{/webjars/jquery/3.5.1/dist/jquery.min.js}" ></script>
+		    <script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" ></script>
+		    <script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" ></script>
+		    		
+		</div>
+		<footer th:fragment="foot">
+			<center>&copy; copyright 2020 The Good Site</center>
+		</footer>
+
+	</body>
+
+</html>

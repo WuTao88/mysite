@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/model/head ::header"><title th:text=""${title}><title></head>
+<body>
+<div th:replace="/model/head ::banner"></div>
+
+<div th:replace="/model/head ::nav"></div>
+
+<div class="container">
+<form action="/blog/push" enctype="multipart/form-data" method="post">
+	<div class="form-group">
+	    <label for="exampleFormControlTextarea1">博客发表</label>
+	    <textarea  name="content" class="form-control" id="content" rows="3"></textarea>
+	    <div id="show" ></div>
+  	</div>
+  	<div class="form-group">
+  		<input name="file"  type="file" class="form-control-file" id="upload" multiple="multiple">
+  		<fieldset style="width:500px;">
+  	</div>
+  	  <div class="form-group">
+  		<button type="submit" class="btn btn-secondary">send</button>
+  	</div>
+</form>
+</div>
+
+
+<script>
+
+        $("#upload").on("change",function(e) {
+            var imgBox = e.target;
+            console.log(e.target)
+            uploadImg($('#show'), imgBox)
+        });
+
+        function uploadImg(element, tag) {
+            var files = tag.files;
+            
+            for(var i=0;i<files.length;i++){
+            var imgSrc;
+            if (!/image\/\w+/.test(files[i].type)) {
+                alert("看清楚，这个需要图片！");
+                return false;
+            }
+            var reader = new FileReader();
+            reader.readAsDataURL(files[i]);
+            reader.onload = function() {
+                console.log(this.result);
+                imgSrc = this.result;
+                var imgs = document.createElement("img");
+                $(imgs).attr("src", imgSrc);
+                $(imgs).attr("class", "rounded img-thumbnail");
+                $(imgs).attr("height", "200");
+                $(imgs).attr("width", "200");
+                element.append(imgs);
+            };
+            }
+        }
+
+
+</script>
+
+
+<div th:include="/model/head ::script"></div>
+
+</body>
+</html>
